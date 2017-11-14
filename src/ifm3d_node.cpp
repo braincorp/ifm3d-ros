@@ -213,6 +213,38 @@ public:
 
     while (ros::ok())
       {
+        std_msgs::Header head = std_msgs::Header();
+        head.stamp = ros::Time::now();
+        head.frame_id = this->frame_id_;
+        last_frame = head.stamp;
+
+        std_msgs::Header optical_head = std_msgs::Header();
+        optical_head.stamp = head.stamp;
+        optical_head.frame_id = this->optical_frame_id_;
+
+        // publish unit vectors once on a latched topic, then re-initialize the
+        // framegrabber with the user's requested schema mask
+        if (! got_uvec)
+          {
+            lock.lock();
+            sensor_msgs::ImagePtr uvec_msg =
+              cv_bridge::CvImage(optical_head,
+                                 enc::TYPE_32FC3,
+                                 this->im_->UnitVectors()).toImageMsg();
+            lock.unlock();
+            this->uvec_pub_.publish(uvec_msg);
+            ros::Duration(1.0).sleep();
+            got_uvec = true;
+            ROS_INFO("Got unit vectors, restarting framegrabber with mask: %d",
+                     (int) this->schema_mask_);
+
+            while (! init_structures(this->schema_mask_))
+                  {
+                    ROS_WARN("Could not re-initialize pixel stream!");
+                    ros::Duration(1.0).sleep();
+                  }
+          }
+
         if (! acquire_frame())
           {
             if (! this->assume_sw_triggered_)
@@ -240,41 +272,10 @@ public:
             continue;
           }
 
-        std_msgs::Header head = std_msgs::Header();
-        head.stamp = ros::Time::now();
-        head.frame_id = this->frame_id_;
-        last_frame = head.stamp;
-
-        std_msgs::Header optical_head = std_msgs::Header();
-        optical_head.stamp = head.stamp;
-        optical_head.frame_id = this->optical_frame_id_;
-
-        // publish unit vectors once on a latched topic, then re-initialize the
-        // framegrabber with the user's requested schema mask
-        if (! got_uvec)
-          {
-            lock.lock();
-            sensor_msgs::ImagePtr uvec_msg =
-              cv_bridge::CvImage(optical_head,
-                                 enc::TYPE_32FC3,
-                                 this->im_->UnitVectors()).toImageMsg();
-            lock.unlock();
-            this->uvec_pub_.publish(uvec_msg);
-            got_uvec = true;
-            ROS_INFO("Got unit vectors, restarting framegrabber with mask: %d",
-                     (int) this->schema_mask_);
-
-            while (! init_structures(this->schema_mask_))
-                  {
-                    ROS_WARN("Could not re-initialize pixel stream!");
-                    ros::Duration(1.0).sleep();
-                  }
-          }
-
-        //
+        
         // Pull out all the wrapped images so that we can release the "GIL"
         // while publishing
-        //
+        
         lock.lock();
 
         // boost::shared_ptr vs std::shared_ptr forces this copy
