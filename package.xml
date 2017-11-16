@@ -17,7 +17,7 @@
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
   <depend>tf</depend>
-  <depend>message_generation</depend>
+  <build_depend>message_generation</build_depend>
 
   <test_depend>rostest</test_depend>
 

@@ -27,6 +27,16 @@ find_package(catkin REQUIRED COMPONENTS
 # Coming soon, for now, just streaming points clouds
 # in free-run mode
 
+add_service_files(
+  FILES
+  GetUnitVectors.srv
+  )
+
+generate_messages(
+  DEPENDENCIES
+  sensor_msgs
+  )
+
 ###################################
 ## catkin specific configuration ##
 ###################################

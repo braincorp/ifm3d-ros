@@ -32,8 +32,11 @@
 #include <ifm3d/camera.h>
 #include <ifm3d/fg.h>
 #include <ifm3d/image.h>
+#include <ifm3d/GetUnitVectors.h>
+
 
 namespace enc = sensor_msgs::image_encodings;
+
 
 class IFM3DNode
 {
@@ -87,6 +90,9 @@ public:
     this->uvec_pub_ =
       nh.advertise<sensor_msgs::Image>("unit_vectors", 1, true);
 
+    
+    this->unit_vectors_service_name = frame_id_base + "/get_unit_vectors";
+    ros::ServiceServer uvec_srv_ =  nh.advertiseService(unit_vectors_service_name, &IFM3DNode::getUnitVectorsCallback, this);
     //this->extrinsics_pub_ = nh.advertise<ifm3d::Extrinsics>("extrinsics", 1);
   } // end: ctor
 
@@ -339,6 +345,27 @@ public:
       } // end: while(ros::ok()) {...}
   } // end: Run()
 
+  bool getUnitVectorsCallback(ifm3d::GetUnitVectors::Request& req,
+        	              ifm3d::GetUnitVectors::Response& resp) {
+  
+     std_msgs::Header optical_head = std_msgs::Header();
+     optical_head.stamp = ros::Time::now();
+     optical_head.frame_id = this->optical_frame_id_;
+  
+     // publish unit vectors once on a latched topic, then re-initialize the
+     // framegrabber with the user's requested schema mask
+     std::unique_lock<std::mutex> lock(this->mutex_, std::defer_lock);
+     lock.lock();
+     sensor_msgs::ImagePtr uvec_msg =
+       cv_bridge::CvImage(optical_head,
+                          enc::TYPE_32FC3,
+                          this->im_->UnitVectors()).toImageMsg();
+     lock.unlock();
+     resp.success = true;
+     resp.image = *uvec_msg;
+     return true;
+  }
+
 private:
   std::string camera_ip_;
   int xmlrpc_port_;
@@ -355,6 +382,8 @@ private:
 
   std::string frame_id_;
   std::string optical_frame_id_;
+  std::string unit_vectors_service_name;
+  ros::ServiceServer uvec_srv_;
 
   ros::Publisher cloud_pub_;
   ros::Publisher uvec_pub_;
