@@ -346,12 +346,12 @@ public:
                                             CV_32FC1); 
         } 
          
-        sensor_msgs::ImagePtr depth_with_confidence = cv_bridge::CvImage(optical_head, 
+        sensor_msgs::ImagePtr depth_with_confidence_msg = cv_bridge::CvImage(optical_head, 
                                                       depth_with_confidence_img.type() == CV_32FC1 ? 
                                                       enc::TYPE_32FC1 : enc::TYPE_16UC1, 
                                                       depth_with_confidence_img).toImageMsg(); 
  
-        this->depth_with_confidence_pub_.publish(depth_with_confidence_img); 
+        this->depth_with_confidence_pub_.publish(depth_with_confidence_msg); 
 
         //
         // XXX: Need to publish extrinsics
