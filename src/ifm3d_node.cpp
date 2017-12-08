@@ -80,7 +80,7 @@ public:
     this->conf_pub_ = it.advertise("confidence", 1);
     this->good_bad_pub_ = it.advertise("good_bad_pixels", 1);
     this->xyz_image_pub_ = it.advertise("xyz_image", 1);
-    this->depth_with_confidence_pub_ = it.advertise("depth_with_confidence");
+    this->depth_with_confidence_pub_ = it.advertise("depth_with_confidence", 1);
 
     // NOTE: not using ImageTransport here ... having issues with the
     // latching. I need to investigate further. A "normal" publisher seems to
@@ -180,7 +180,7 @@ public:
     cv::Mat xyz_img;
     cv::Mat raw_amplitude_img;
     cv::Mat good_bad_pixels_img;
-    cv::Mat depth_with_confidence;
+    cv::Mat depth_with_confidence_img;
 
     std::vector<float> extrinsics(6);
 
@@ -258,7 +258,7 @@ public:
         xyz_img = this->im_->XYZImage();
         confidence_img = this->im_->ConfidenceImage();
         distance_img = this->im_->DistanceImage();
-        depth_with_confidence = distance_img.clone();
+        depth_with_confidence_img = distance_img.clone();
         amplitude_img = this->im_->AmplitudeImage();
         raw_amplitude_img = this->im_->RawAmplitudeImage();
 
@@ -351,7 +351,7 @@ public:
                                                       enc::TYPE_32FC1 : enc::TYPE_16UC1, 
                                                       depth_with_confidence_img).toImageMsg(); 
  
-        this->depth_with_confidence_pub_.publish(depth_with_confidence); 
+        this->depth_with_confidence_pub_.publish(depth_with_confidence_img); 
 
         //
         // XXX: Need to publish extrinsics
