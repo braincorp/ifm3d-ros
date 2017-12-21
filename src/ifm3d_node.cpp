@@ -125,7 +125,7 @@ public:
             this->fg_ =
               std::make_shared<ifm3d::FrameGrabber>(this->cam_, mask);
 
-            ROS_INFO("Initializing image buffer...");
+            //ROS_INFO("Initializing image buffer...");
             this->im_ = std::make_shared<ifm3d::ImageBuffer>();
 
             retval = true;
@@ -237,8 +237,8 @@ public:
             lock.unlock();
             this->uvec_pub_.publish(uvec_msg);
             got_uvec = true;
-            ROS_INFO("Got unit vectors, restarting framegrabber with mask: %d",
-                     (int) this->schema_mask_);
+            //ROS_INFO("Got unit vectors, restarting framegrabber with mask: %d",
+            //         (int) this->schema_mask_);
 
             while (! init_structures(this->schema_mask_))
                   {
