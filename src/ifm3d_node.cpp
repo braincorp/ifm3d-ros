@@ -369,7 +369,7 @@ public:
         if(confidence_img.rows >0 && confidence_img.cols > 0){ 
           //compute depth with confidence only when it contains some data 
           cv::Mat non_saturated_zero_img = ((confidence_img & 2) == 0) & (distance_img == 0); 
-          depth_with_confidence_img.setTo(0., non_saturated_zero_img); 
+          depth_with_confidence_img.setTo(32767., non_saturated_zero_img); 
         }else{ 
           //publish zeros otherwise 
           depth_with_confidence_img = cv::Mat::zeros(confidence_img.rows, 
