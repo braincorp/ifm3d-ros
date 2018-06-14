@@ -1,0 +1,74 @@
+{
+  "ifm3d": {
+    "Apps": [
+      {
+        "Description": "",
+        "Id": "476707713",
+        "Imager": {
+          "ExposureTime": "1350",
+          "ExposureTimeRatio": "40",
+          "FrameRate": "25",
+          "MaxAllowedFrameRate": "8.13008130081301",
+          "MinimumAmplitude": "30",
+          "SpatialFilter": {
+            "MaskSize": "0"
+          },
+          "SpatialFilterType": "1",
+          "SymmetryThreshold": "0.4",
+          "TemporalFilter": {},
+          "TemporalFilterType": "0",
+          "Type": "upTo03m_moderate"
+        },
+        "Index": "1",
+        "Name": "",
+        "OutputAmplitudeImage": "true",
+        "OutputConfidenceImage": "true",
+        "OutputDistanceImage": "true",
+        "OutputGrayscaleImage": "false",
+        "OutputXYZImage": "true",
+        "TriggerMode": "1",
+        "Type": "Camera"
+      }
+    ],
+    "Device": {
+      "ArticleNumber": "O3X100",
+      "ArticleStatus": "AA",
+      "Description": "RIGHT_IFM",
+      "DeviceType": "1:512",
+      "IPAddressConfig": "0",
+      "ImageTimestampReference": "1499943750",
+      "Name": "New sensor",
+      "OperatingMode": "0",
+      "PasswordActivated": "false",
+      "SessionTimeout": "30",
+      "TemperatureIllu": "42.1875",
+      "UpTime": "2.00194444444444"
+    },
+    "Net": {
+      "MACAddress": "00:02:01:40:6D:96",
+      "NetworkSpeed": "0",
+      "StaticIPv4Address": "192.168.2.2",
+      "StaticIPv4Gateway": "192.168.0.201",
+      "StaticIPv4SubNetMask": "255.255.255.0",
+      "UseDHCP": "false"
+    },
+    "_": {
+      "Date": "Mon Nov  6 20:21:28 2017",
+      "HWInfo": {
+        "MACAddress": "00:02:01:40:6D:96",
+        "Mainboard": "#!02_M162_B30_12345678_008026357",
+        "MiraSerial": "Not implemented"
+      },
+      "SWVersion": {
+        "Algorithm_Version": "0.1.7",
+        "Calibration_Device": "00:02:01:40:6d:96",
+        "Calibration_Version": "1.0.0",
+        "ELDK": "GOLDENEYE_YOCTO_HARDFP-312-06d9c894636352a6c93711c7284d02b0c794a527",
+        "IFM_Software": "1.0.56",
+        "Linux": "Linux version 3.14.34-rt31-yocto-standard-00014-gb439e15-dirty (jenkins@dettlx152) (gcc version 4.9.2 (GCC) ) #1 SMP PREEMPT RT Thu Jul 13 10:49:08 CEST 2017",
+        "Main_Application": "0.4.1355"
+      },
+      "ifm3d_version": 200
+    }
+  }
+}

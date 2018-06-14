@@ -1,0 +1,255 @@
+{
+    "o3d3xx":
+    {
+       "Device":
+        {
+            "Name": "Center-IFM",
+            "Description": "",
+            "ActiveApplication": "3",
+            "PcicEipEnabled": "false",
+            "PcicTcpPort": "50010",
+            "PcicProtocolVersion": "2",
+            "IOLogicType": "1",
+            "IODebouncing": "true",
+            "IOExternApplicationSwitch": "0",
+            "SessionTimeout": "30",
+            "ServiceReportPassedBuffer": "5",
+            "ServiceReportFailedBuffer": "5",
+            "ExtrinsicCalibTransX": "0",
+            "ExtrinsicCalibTransY": "0",
+            "ExtrinsicCalibTransZ": "0",
+            "ExtrinsicCalibRotX": "0",
+            "ExtrinsicCalibRotY": "0",
+            "ExtrinsicCalibRotZ": "0",
+            "EvaluationFinishedMinHoldTime": "10",
+            "SaveRestoreStatsOnApplSwitch": "true",
+            "IPAddressConfig": "0",
+            "PasswordActivated": "false",
+            "OperatingMode": "0",
+            "DeviceType": "",
+            "ArticleNumber": "",
+            "ArticleStatus": "",
+            "UpTime": "6.910783037686161e-310",
+            "ImageTimestampReference": "-2080344368",
+            "TemperatureFront1": "6.910813109359182e-310",
+            "TemperatureFront2": "6.910783037686211e-310",
+            "TemperatureIMX6": "6.910813109371039e-310",
+            "TemperatureIllu": "6.910813109382897e-310"
+        },
+        "Net":
+        {
+            "MACAddress": "",
+            "NetworkSpeed": "0",
+            "StaticIPv4Address": "192.168.0.2",
+            "StaticIPv4SubNetMask": "255.255.255.0",
+            "StaticIPv4Gateway": "192.168.0.201",
+            "UseDHCP": "false"
+        },
+        "Apps":
+        [
+            {
+                "Name": "ShortRange",
+                "Description": "Up to 5m, two exposure with 4ms, 4:1 ratio, ~15Hz",
+                "TriggerMode": "1",
+                "PcicTcpResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"ascii\" }, \"elements\": [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"blob\", \"id\": \"normalized_amplitude_image\" }, { \"type\": \"blob\", \"id\": \"distance_image\" }, { \"type\": \"blob\", \"id\": \"x_image\" }, { \"type\": \"blob\", \"id\": \"y_image\" }, { \"type\": \"blob\", \"id\": \"z_image\" }, { \"type\": \"blob\", \"id\": \"confidence_image\" }, { \"type\": \"blob\", \"id\": \"diagnostic_data\" }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "PcicEipResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"binary\", \"order\": \"big\" }, \"elements\" : [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"records\", \"id\": \"models\", \"elements\": [ { \"type\": \"int16\", \"id\": \"boxFound\" }, { \"type\": \"int16\", \"id\": \"width\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"height\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"length\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"xMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"zMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yawAngle\" }, { \"type\": \"int16\", \"id\": \"qualityLength\" }, { \"type\": \"int16\", \"id\": \"qualityWidth\" }, { \"type\": \"int16\", \"id\": \"qualityHeight\" } ] }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "LogicGraph": "{\"IOMap\": {\"OUT1\": \"RFT\",\"OUT2\": \"AQUFIN\"},\"blocks\": {\"B00001\": {\"pos\": {\"x\": 200,\"y\": 200},\"properties\": {},\"type\": \"PIN_EVENT_IMAGE_ACQUISITION_FINISHED\"},\"B00002\": {\"pos\": {\"x\": 200,\"y\": 75},\"properties\": {},\"type\": \"PIN_EVENT_READY_FOR_TRIGGER\"},\"B00003\": {\"pos\": {\"x\": 600,\"y\": 75},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT1\"},\"B00005\": {\"pos\": {\"x\": 600,\"y\": 200},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT2\"}},\"connectors\": {\"C00000\": {\"dst\": \"B00003\",\"dstEP\": 0,\"src\": \"B00002\",\"srcEP\": 0},\"C00001\": {\"dst\": \"B00005\",\"dstEP\": 0,\"src\": \"B00001\",\"srcEP\": 0}}}",
+                "Type": "Camera",
+                "Index": "1",
+                "Id": "199678082",
+                "Imager":
+                {
+                    "Channel": "0",
+                    "ClippingBottom": "131",
+                    "ClippingLeft": "0",
+                    "ClippingRight": "175",
+                    "ClippingTop": "0",
+                    "ContinuousAutoExposure": "false",
+                    "EnableAmplitudeCorrection": "true",
+                    "EnableFastFrequency": "false",
+                    "EnableFilterAmplitudeImage": "false",
+                    "EnableFilterDistanceImage": "true",
+                    "EnableRectificationAmplitudeImage": "false",
+                    "EnableRectificationDistanceImage": "false",
+                    "ExposureTime": "4000",
+                    "ExposureTimeList": "1000;4000",
+                    "ExposureTimeRatio": "4",
+                    "FrameRate": "25",
+                    "MinimumAmplitude": "42",
+                    "Resolution": "0",
+                    "ClippingCuboid": "{\"XMin\": -3.402823e+38, \"XMax\": 3.402823e+38, \"YMin\": -3.402823e+38, \"YMax\": 3.402823e+38, \"ZMin\": -3.402823e+38, \"ZMax\": 3.402823e+38}",
+                    "SpatialFilterType": "0",
+                    "SymmetryThreshold": "0",
+                    "TemporalFilterType": "0",
+                    "ThreeFreqMax2FLineDistPercentage": "80",
+                    "ThreeFreqMax3FLineDistPercentage": "80",
+                    "TwoFreqMaxLineDistPercentage": "80",
+                    "Type": "under5m_moderate",
+                    "MaxAllowedLEDFrameRate": "23.8",
+                    "SpatialFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    },
+                    "TemporalFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    }
+                }
+            },
+            {
+                "Name": "SuperLongRange",
+                "Description": "Settings: up to 30m, 3 exposures at 5ms, 1ms and 0.1ms, ~8Hz\nRaytrace in the range of [.2m ... 4.5m]",
+                "TriggerMode": "1",
+                "PcicTcpResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"ascii\" }, \"elements\": [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"blob\", \"id\": \"normalized_amplitude_image\" }, { \"type\": \"blob\", \"id\": \"distance_image\" }, { \"type\": \"blob\", \"id\": \"x_image\" }, { \"type\": \"blob\", \"id\": \"y_image\" }, { \"type\": \"blob\", \"id\": \"z_image\" }, { \"type\": \"blob\", \"id\": \"confidence_image\" }, { \"type\": \"blob\", \"id\": \"diagnostic_data\" }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "PcicEipResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"binary\", \"order\": \"big\" }, \"elements\" : [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"records\", \"id\": \"models\", \"elements\": [ { \"type\": \"int16\", \"id\": \"boxFound\" }, { \"type\": \"int16\", \"id\": \"width\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"height\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"length\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"xMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"zMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yawAngle\" }, { \"type\": \"int16\", \"id\": \"qualityLength\" }, { \"type\": \"int16\", \"id\": \"qualityWidth\" }, { \"type\": \"int16\", \"id\": \"qualityHeight\" } ] }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "LogicGraph": "{\"IOMap\": {\"OUT1\": \"RFT\",\"OUT2\": \"AQUFIN\"},\"blocks\": {\"B00001\": {\"pos\": {\"x\": 200,\"y\": 200},\"properties\": {},\"type\": \"PIN_EVENT_IMAGE_ACQUISITION_FINISHED\"},\"B00002\": {\"pos\": {\"x\": 200,\"y\": 75},\"properties\": {},\"type\": \"PIN_EVENT_READY_FOR_TRIGGER\"},\"B00003\": {\"pos\": {\"x\": 600,\"y\": 75},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT1\"},\"B00005\": {\"pos\": {\"x\": 600,\"y\": 200},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT2\"}},\"connectors\": {\"C00000\": {\"dst\": \"B00003\",\"dstEP\": 0,\"src\": \"B00002\",\"srcEP\": 0},\"C00001\": {\"dst\": \"B00005\",\"dstEP\": 0,\"src\": \"B00001\",\"srcEP\": 0}}}",
+                "Type": "Camera",
+                "Index": "2",
+                "Id": "2138882218",
+                "Imager":
+                {
+                    "Channel": "0",
+                    "ClippingBottom": "131",
+                    "ClippingLeft": "0",
+                    "ClippingRight": "175",
+                    "ClippingTop": "0",
+                    "ContinuousAutoExposure": "false",
+                    "EnableAmplitudeCorrection": "true",
+                    "EnableFastFrequency": "true",
+                    "EnableFilterAmplitudeImage": "false",
+                    "EnableFilterDistanceImage": "true",
+                    "EnableRectificationAmplitudeImage": "false",
+                    "EnableRectificationDistanceImage": "false",
+                    "ExposureTimeList": "100;1000;5000",
+                    "FrameRate": "25",
+                    "MinimumAmplitude": "42",
+                    "Resolution": "0",
+                    "ClippingCuboid": "{\"XMin\": -3.402823e+38, \"XMax\": 3.402823e+38, \"YMin\": -3.402823e+38, \"YMax\": 3.402823e+38, \"ZMin\": -3.402823e+38, \"ZMax\": 3.402823e+38}",
+                    "SpatialFilterType": "0",
+                    "SymmetryThreshold": "0",
+                    "TemporalFilterType": "0",
+                    "ThreeFreqMax2FLineDistPercentage": "80",
+                    "ThreeFreqMax3FLineDistPercentage": "80",
+                    "TwoFreqMaxLineDistPercentage": "80",
+                    "Type": "upto30m_high",
+                    "MaxAllowedLEDFrameRate": "19.6",
+                    "SpatialFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    },
+                    "TemporalFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    }
+                }
+            },
+            {
+                "Name": "LongRange",
+                "Description": "Settings: up to 30m, 2 exposures at 2ms with 50:1 ratio, ~10Hz, NO FAST FREQUENCY\nRaytrace in the range of [.2m ... 4.5m]",
+                "TriggerMode": "1",
+                "PcicTcpResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"ascii\" }, \"elements\": [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"blob\", \"id\": \"normalized_amplitude_image\" }, { \"type\": \"blob\", \"id\": \"distance_image\" }, { \"type\": \"blob\", \"id\": \"x_image\" }, { \"type\": \"blob\", \"id\": \"y_image\" }, { \"type\": \"blob\", \"id\": \"z_image\" }, { \"type\": \"blob\", \"id\": \"confidence_image\" }, { \"type\": \"blob\", \"id\": \"diagnostic_data\" }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "PcicEipResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"binary\", \"order\": \"big\" }, \"elements\" : [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"records\", \"id\": \"models\", \"elements\": [ { \"type\": \"int16\", \"id\": \"boxFound\" }, { \"type\": \"int16\", \"id\": \"width\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"height\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"length\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"xMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"zMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yawAngle\" }, { \"type\": \"int16\", \"id\": \"qualityLength\" }, { \"type\": \"int16\", \"id\": \"qualityWidth\" }, { \"type\": \"int16\", \"id\": \"qualityHeight\" } ] }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "LogicGraph": "{\"IOMap\": {\"OUT1\": \"RFT\",\"OUT2\": \"AQUFIN\"},\"blocks\": {\"B00001\": {\"pos\": {\"x\": 200,\"y\": 200},\"properties\": {},\"type\": \"PIN_EVENT_IMAGE_ACQUISITION_FINISHED\"},\"B00002\": {\"pos\": {\"x\": 200,\"y\": 75},\"properties\": {},\"type\": \"PIN_EVENT_READY_FOR_TRIGGER\"},\"B00003\": {\"pos\": {\"x\": 600,\"y\": 75},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT1\"},\"B00005\": {\"pos\": {\"x\": 600,\"y\": 200},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT2\"}},\"connectors\": {\"C00000\": {\"dst\": \"B00003\",\"dstEP\": 0,\"src\": \"B00002\",\"srcEP\": 0},\"C00001\": {\"dst\": \"B00005\",\"dstEP\": 0,\"src\": \"B00001\",\"srcEP\": 0}}}",
+                "Type": "Camera",
+                "Index": "3",
+                "Id": "439019215",
+                "Imager":
+                {
+                    "Channel": "0",
+                    "ClippingBottom": "131",
+                    "ClippingLeft": "0",
+                    "ClippingRight": "175",
+                    "ClippingTop": "0",
+                    "ContinuousAutoExposure": "false",
+                    "EnableAmplitudeCorrection": "true",
+                    "EnableFastFrequency": "false",
+                    "EnableFilterAmplitudeImage": "false",
+                    "EnableFilterDistanceImage": "true",
+                    "EnableRectificationAmplitudeImage": "false",
+                    "EnableRectificationDistanceImage": "false",
+                    "ExposureTime": "2000",
+                    "ExposureTimeList": "40;2000",
+                    "ExposureTimeRatio": "50",
+                    "FrameRate": "25",
+                    "MinimumAmplitude": "42",
+                    "Resolution": "0",
+                    "ClippingCuboid": "{\"XMin\": -3.402823e+38, \"XMax\": 3.402823e+38, \"YMin\": -3.402823e+38, \"YMax\": 3.402823e+38, \"ZMin\": -3.402823e+38, \"ZMax\": 3.402823e+38}",
+                    "SpatialFilterType": "0",
+                    "SymmetryThreshold": "0",
+                    "TemporalFilterType": "0",
+                    "ThreeFreqMax2FLineDistPercentage": "80",
+                    "ThreeFreqMax3FLineDistPercentage": "80",
+                    "TwoFreqMaxLineDistPercentage": "80",
+                    "Type": "upto30m_moderate",
+                    "MaxAllowedLEDFrameRate": "54.5",
+                    "SpatialFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    },
+                    "TemporalFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    }
+                }
+            },
+            {
+                "Name": "TripleAction",
+                "Description": "Three freq, 2 exposure (1ms, 0.05ms), ~12Hz",
+                "TriggerMode": "1",
+                "PcicTcpResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"ascii\" }, \"elements\": [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"blob\", \"id\": \"normalized_amplitude_image\" }, { \"type\": \"blob\", \"id\": \"distance_image\" }, { \"type\": \"blob\", \"id\": \"x_image\" }, { \"type\": \"blob\", \"id\": \"y_image\" }, { \"type\": \"blob\", \"id\": \"z_image\" }, { \"type\": \"blob\", \"id\": \"confidence_image\" }, { \"type\": \"blob\", \"id\": \"diagnostic_data\" }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "PcicEipResultSchema": "{ \"layouter\": \"flexible\", \"format\": { \"dataencoding\": \"binary\", \"order\": \"big\" }, \"elements\" : [ { \"type\": \"string\", \"value\": \"star\", \"id\": \"start_string\" }, { \"type\": \"records\", \"id\": \"models\", \"elements\": [ { \"type\": \"int16\", \"id\": \"boxFound\" }, { \"type\": \"int16\", \"id\": \"width\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"height\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"length\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"xMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"zMidTop\", \"format\": { \"scale\": 1000 } }, { \"type\": \"int16\", \"id\": \"yawAngle\" }, { \"type\": \"int16\", \"id\": \"qualityLength\" }, { \"type\": \"int16\", \"id\": \"qualityWidth\" }, { \"type\": \"int16\", \"id\": \"qualityHeight\" } ] }, { \"type\": \"string\", \"value\": \"stop\", \"id\": \"end_string\" } ] }",
+                "LogicGraph": "{\"IOMap\": {\"OUT1\": \"RFT\",\"OUT2\": \"AQUFIN\"},\"blocks\": {\"B00001\": {\"pos\": {\"x\": 200,\"y\": 200},\"properties\": {},\"type\": \"PIN_EVENT_IMAGE_ACQUISITION_FINISHED\"},\"B00002\": {\"pos\": {\"x\": 200,\"y\": 75},\"properties\": {},\"type\": \"PIN_EVENT_READY_FOR_TRIGGER\"},\"B00003\": {\"pos\": {\"x\": 600,\"y\": 75},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT1\"},\"B00005\": {\"pos\": {\"x\": 600,\"y\": 200},\"properties\": {\"pulse_duration\": 0},\"type\": \"DIGITAL_OUT2\"}},\"connectors\": {\"C00000\": {\"dst\": \"B00003\",\"dstEP\": 0,\"src\": \"B00002\",\"srcEP\": 0},\"C00001\": {\"dst\": \"B00005\",\"dstEP\": 0,\"src\": \"B00001\",\"srcEP\": 0}}}",
+                "Type": "Camera",
+                "Index": "4",
+                "Id": "984411720",
+                "Imager":
+                {
+                    "Channel": "0",
+                    "ClippingBottom": "131",
+                    "ClippingLeft": "0",
+                    "ClippingRight": "175",
+                    "ClippingTop": "0",
+                    "ContinuousAutoExposure": "false",
+                    "EnableAmplitudeCorrection": "true",
+                    "EnableFastFrequency": "true",
+                    "EnableFilterAmplitudeImage": "false",
+                    "EnableFilterDistanceImage": "true",
+                    "EnableRectificationAmplitudeImage": "false",
+                    "EnableRectificationDistanceImage": "false",
+                    "ExposureTime": "1000",
+                    "ExposureTimeList": "50;1000",
+                    "ExposureTimeRatio": "20",
+                    "FrameRate": "25",
+                    "MinimumAmplitude": "42",
+                    "Resolution": "0",
+                    "ClippingCuboid": "{\"XMin\": -3.402823e+38, \"XMax\": 3.402823e+38, \"YMin\": -3.402823e+38, \"YMax\": 3.402823e+38, \"ZMin\": -3.402823e+38, \"ZMax\": 3.402823e+38}",
+                    "SpatialFilterType": "0",
+                    "SymmetryThreshold": "0",
+                    "TemporalFilterType": "0",
+                    "ThreeFreqMax2FLineDistPercentage": "80",
+                    "ThreeFreqMax3FLineDistPercentage": "80",
+                    "TwoFreqMaxLineDistPercentage": "80",
+                    "Type": "morethan30m_moderate",
+                    "MaxAllowedLEDFrameRate": "96.09999999999999",
+                    "SpatialFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    },
+                    "TemporalFilter":
+                    {
+                        "Type": "0",
+                        "TypeStr_": "Off"
+                    }
+                }
+            }
+        ]
+    }
+}
+
