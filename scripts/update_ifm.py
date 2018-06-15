@@ -10,7 +10,7 @@ camera_name_ip = {'left': '192.168.1.2', 'right': '192.168.2.2', 'center': '192.
 camera_name_json = {'left': 'ifm_left.json', 'right': 'ifm_right.json', 'center': 'ifm_center.json'}
 
 
-def run_shell_command(command, wait_for_return=True, stdin=subprocess.PIPE, get_output=False, debug=True, assert_returncode=True):
+def run_shell_command(command, wait_for_return=True, stdin=subprocess.PIPE, get_output=False, debug=False, assert_returncode=True):
     p = subprocess.Popen(command.split(), stdout=subprocess.PIPE,
                          stdin=stdin,
                          stderr=subprocess.PIPE,
@@ -51,7 +51,7 @@ def find_camera_interface(interface):
 
 def ping_interface(ip, assert_returncode=False):
     cmd = 'ping -i 0.5 -q -c1 %s' % ip
-    code, result = run_shell_command(cmd, get_output=True,  assert_returncode=assert_returncode)
+    result = run_shell_command(cmd, get_output=False,  assert_returncode=assert_returncode)
     return result
  
       
@@ -62,11 +62,18 @@ def set_interface_config(name, ip):
     run_shell_command(cmd, debug=False)
 
 
-def update_ifm_settings(old_ip, interface):
+def update_ifm_settings(old_ip, interface, sensor_name):
     while True:
         side = raw_input("Enter camera side (left or right or center): ").lower()
     	if side in ['left', 'right', 'center']:
             break
+    
+    # sensor sanity check here
+    if 'left' in side or 'right' in side:
+        assert 'O3X' in sensor_name
+
+    if 'center' in side:
+        assert 'O3D' in sensor_name
 
     json_file = camera_name_json[side]
     new_ip = camera_name_ip[side] 
@@ -256,18 +263,19 @@ if __name__ == "__main__":
     #interface='enx00e04c6802b7'
     ip = find_camera_interface(interface)
     assert ip is not None
-    #set_interface_config('eth0', ip)
-    update_ifm_firmware(ip=ip, firmware_fname=firmware_fname)
-    new_ip = update_ifm_settings(ip, interface)
+    # ifm-firmware name
+    fw_version = get_ifm_firmware_version(ip)
+    sensor_name = get_ifm_sensor_name(ip)
+    if 'O3D' not in sensor_name:
+        update_ifm_firmware(ip=ip, firmware_fname=firmware_fname)
+    new_ip = update_ifm_settings(ip, interface, sensor_name)
     ifm_proc = launch_ifm_node(new_ip)
     pid, res = check_process_running('rviz.launch')
     if res is False:
         launch_rviz()
-#    print "See the result in the rviz window in 5 seconds. Ctrl-C to kill !"
     while True:
         ret = raw_input("See the result in the rviz window in 5 seconds. Enter 'q' to exit...")
         if ret in ['q', 'Q']:
             break
-    run_shell_command("sudo ifconfig " + interface + " down", False)
 
 
