@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(ifm3d)
 
+# Find package
+find_library(LIB_glog NAMES glog)
+
 #
 # ifm3d is not yet setup for `find_package` discovery,
 # so for now we do it "the old way"
@@ -58,6 +61,7 @@ include_directories(
 add_executable(ifm3d_node src/ifm3d_node.cpp)
 target_link_libraries(ifm3d_node
   ${catkin_LIBRARIES}
+  ${LIB_glog}
   ${LIB_ifm3d_camera}
   ${LIB_ifm3d_framegrabber}
   ${LIB_ifm3d_image}
