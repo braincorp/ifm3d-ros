@@ -30,6 +30,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Extrinsics.msg
+  Intrinsics.msg
   )
 
 add_service_files(
@@ -67,12 +68,15 @@ target_link_libraries(ifm3d_node
   ${LIB_ifm3d_image}
   )
 add_dependencies(ifm3d_node ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(ifm3d_node sensor_msgs_generate_messages_cpp)
+
 
 add_executable(ifm3d_config_node src/ifm3d_config_node.cpp)
 target_link_libraries(ifm3d_config_node
   ${catkin_LIBRARIES}
   )
 add_dependencies(ifm3d_config_node ${PROJECT_NAME}_generate_messages_cpp)
+
 
 #############
 ## Install ##

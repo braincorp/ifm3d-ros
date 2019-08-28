@@ -93,6 +93,7 @@ public:
       nh.advertise<sensor_msgs::Image>("unit_vectors", 1, true);
 
     this->extrinsics_pub_ = nh.advertise<ifm3d::Extrinsics>("extrinsics", 1);
+    this->intrinsics_pub_ = nh.advertise<ifm3d::Intrinsics>("intrinsics", 1);
 
     //---------------------
     // Advertised Services
@@ -292,6 +293,7 @@ public:
         amplitude_img = this->im_->AmplitudeImage();
         raw_amplitude_img = this->im_->RawAmplitudeImage();
         extrinsics = this->im_->Extrinsics();
+	intrinsics = this->im_->Intrinsics();
 
         lock.unlock();
 
@@ -385,6 +387,26 @@ public:
         this->depth_with_confidence_pub_.publish(depth_with_confidence_msg); 
 
         //
+        // publish intrinsics
+        //
+        ifm3d::Intrinsics intrinsics_msg;
+        intrinsics_msg.header = optical_head;
+        try
+          {
+            extrinsics_msg.tx = intrinsics.at(0);
+            extrinsics_msg.ty = intrinsics.at(1);
+            extrinsics_msg.tz = intrinsics.at(2);
+            extrinsics_msg.rot_x = intrinsics.at(3);
+            extrinsics_msg.rot_y = intrinsics.at(4);
+            extrinsics_msg.rot_z = intrinsics.at(5);
+          }
+        catch (const std::out_of_range& ex)
+          {
+            ROS_WARN("out-of-range error fetching extrinsics");
+          }
+        this->intrinsics_pub._publish(intrinsics_msg);
+
+//
         // publish extrinsics
         //
         ifm3d::Extrinsics extrinsics_msg;
