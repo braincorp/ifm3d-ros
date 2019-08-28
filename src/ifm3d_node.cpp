@@ -35,6 +35,7 @@
 #include <ifm3d/Config.h>
 #include <ifm3d/Dump.h>
 #include <ifm3d/Extrinsics.h>
+#include <ifm3d/Intrinsics.h>
 #include <ifm3d/Trigger.h>
 
 namespace enc = sensor_msgs::image_encodings;
@@ -293,7 +294,7 @@ public:
         amplitude_img = this->im_->AmplitudeImage();
         raw_amplitude_img = this->im_->RawAmplitudeImage();
         extrinsics = this->im_->Extrinsics();
-	intrinsics = this->im_->Intrinsics();
+        intrinsics = this->im_->Intrinsics();
 
         lock.unlock();
 
@@ -393,20 +394,24 @@ public:
         intrinsics_msg.header = optical_head;
         try
           {
-            extrinsics_msg.tx = intrinsics.at(0);
-            extrinsics_msg.ty = intrinsics.at(1);
-            extrinsics_msg.tz = intrinsics.at(2);
-            extrinsics_msg.rot_x = intrinsics.at(3);
-            extrinsics_msg.rot_y = intrinsics.at(4);
-            extrinsics_msg.rot_z = intrinsics.at(5);
+            intrinsics_msg.fx = intrinsics.at(0);
+            intrinsics_msg.fy = intrinsics.at(1);
+            intrinsics_msg.mx = intrinsics.at(2);
+            intrinsics_msg.my = intrinsics.at(3);
+            intrinsics_msg.alpha = intrinsics.at(4);
+            intrinsics_msg.k1 = intrinsics.at(5);
+            intrinsics_msg.k2 = intrinsics.at(6);
+            intrinsics_msg.k5 = intrinsics.at(7);
+            intrinsics_msg.k3 = intrinsics.at(8);
+            intrinsics_msg.k4 = intrinsics.at(9);
           }
         catch (const std::out_of_range& ex)
           {
-            ROS_WARN("out-of-range error fetching extrinsics");
+            ROS_WARN("out-of-range error fetching intrinsics");
           }
         this->intrinsics_pub._publish(intrinsics_msg);
 
-//
+        //
         // publish extrinsics
         //
         ifm3d::Extrinsics extrinsics_msg;
