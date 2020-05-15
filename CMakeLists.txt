@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(ifm3d)
 
+# Find package
+find_library(LIB_glog NAMES glog)
+
 find_package(ifm3d 0.11.2 CONFIG REQUIRED COMPONENTS
              camera
              framegrabber
@@ -71,6 +74,7 @@ include_directories(
 add_library(ifm3d_ros src/camera_nodelet.cpp)
 target_link_libraries(ifm3d_ros
   ${catkin_LIBRARIES}
+  ${LIB_glog}
   ifm3d::camera
   ifm3d::framegrabber
   ifm3d::image

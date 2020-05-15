@@ -112,6 +112,7 @@ namespace ifm3d_ros
     image_transport::Publisher conf_pub_;
     image_transport::Publisher good_bad_pub_;
     image_transport::Publisher xyz_image_pub_;
+    image_transport::Publisher depth_with_confidence_pub_;
 
     //
     // Services we advertise
