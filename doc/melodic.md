@@ -1,4 +1,4 @@
-ifm3d-ros on Ubuntu 16.04 and ROS Kinetic
+ifm3d-ros on Ubuntu 18.04 and ROS Melodic
 -----------------------------------------
 
 NOTE: The instructions below only apply if you plan to install `ifm3d` from
@@ -6,27 +6,25 @@ source. You can, as of version 0.12.0, install `ifm3d` from binary
 debs. Instructions for that are located at the main
 [ifm3d project page](https://github.com/ifm/ifm3d).
 
-This article provides a quick-start guide for getting a fresh install of Ubuntu
-16.04 ready for usage with `ifm3d-ros` and an O3X camera. As a pre-requisite
-for this article, we assume you already have Ubuntu 16.04 installed (but have
-done no other configuration) and that you will be using `ifm3d` version `0.3.2`
-and `ifm3d-ros` version `0.4.0`. Later versions of the `ifm3d` and `ifm3d-ros`
-software will work as well until we end-of-life Ubuntu 16.04 and ROS
-Kinetic. To be clear, we assume you have done no updates to your Ubuntu
-install, so we start there.
 
-### Update the Baseline Packages of your Ubuntu 16.04 Install
+This article provides a quick-start guide for getting a fresh install of Ubuntu
+18.04 ready for usage with `ifm3d-ros` and an O3D camera. As a pre-requisite
+for this article, we assume you already have Ubuntu 18.04 installed (but have
+done no other configuration). A *minimal* install of 18.04 is sufficient for
+following along below.
+
+### Update the Baseline Packages of your Ubuntu 18.04 Install
 
 ```
 $ sudo apt-get update
 $ sudo apt-get -u upgrade
 ```
 
-### Install ROS Kinetic
+### Install ROS Melodic
 
 You should now follow
-[these steps](http://wiki.ros.org/kinetic/Installation/Ubuntu) exactly (we
-assume you did) and that you chose to install `ros-kinetic-desktop-full`. Go do
+[these steps](http://wiki.ros.org/melodic/Installation/Ubuntu) exactly (we
+assume you did) and that you chose to install `ros-melodic-desktop-full`. Go do
 that now, then continue on.
 
 ### Additional Dependencies
