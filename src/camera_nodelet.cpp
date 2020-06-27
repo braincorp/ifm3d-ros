@@ -549,8 +549,8 @@ ifm3d_ros::CameraNodelet::Run()
           lock.unlock();
           this->uvec_pub_.publish(uvec_msg);
           got_uvec = true;
-          ROS_INFO("Got unit vectors, restarting framegrabber with mask: %d",
-                   (int) this->schema_mask_);
+          //ROS_INFO("Got unit vectors, restarting framegrabber with mask: %d",
+          //         (int) this->schema_mask_);
 
           while (! this->InitStructures(this->schema_mask_))
             {
@@ -574,6 +574,7 @@ ifm3d_ros::CameraNodelet::Run()
       xyz_img = this->im_->XYZImage();
       confidence_img = this->im_->ConfidenceImage();
       distance_img = this->im_->DistanceImage();
+      depth_with_confidence_img = distance_img.clone();
       amplitude_img = this->im_->AmplitudeImage();
       raw_amplitude_img = this->im_->RawAmplitudeImage();
       extrinsics = this->im_->Extrinsics();
@@ -652,6 +653,25 @@ ifm3d_ros::CameraNodelet::Run()
                            "mono8",
                            (good_bad_pixels_img == 0)).toImageMsg();
       this->good_bad_pub_.publish(good_bad_msg);
+
+      if(confidence_img.rows >0 && confidence_img.cols > 0){
+        //compute depth with confidence only when it contains some data
+        cv::Mat non_saturated_zero_img = ((confidence_img & 2) == 0) & (distance_img == 0);
+        depth_with_confidence_img.setTo(32767, non_saturated_zero_img);
+      }else{
+        //publish zeros otherwise
+        depth_with_confidence_img = cv::Mat::zeros(confidence_img.rows,
+                                          confidence_img.cols,
+                                          CV_32FC1);
+      }
+
+      sensor_msgs::ImagePtr depth_with_confidence_msg = cv_bridge::CvImage(optical_head,
+                                                    depth_with_confidence_img.type() == CV_32FC1 ?
+                                                    enc::TYPE_32FC1 : enc::TYPE_16UC1,
+                                                    depth_with_confidence_img).toImageMsg();
+
+      this->depth_with_confidence_pub_.publish(depth_with_confidence_msg);
+
 
       //
       // publish extrinsics
